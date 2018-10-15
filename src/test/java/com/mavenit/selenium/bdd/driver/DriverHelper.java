@@ -24,10 +24,7 @@ public class DriverHelper {
     protected static WebDriver driver;
     //private String browser = System.getProperty("brows");
     private String browser = "chrome";
-    private String machine = "remote";
-
-     /* @FindBy(linkText = "GOT IT")
-    private WebElement cookieBtn;*/
+    private String machine = "local";
 
     public DriverHelper()
     {
@@ -54,7 +51,8 @@ public class DriverHelper {
                 }
                 break;
             case "ie":
-                if(machine=="local") {
+                if(machine.equalsIgnoreCase("local"))
+                {
                     InternetExplorerDriverManager.getInstance().setup();
                     driver = new InternetExplorerDriver();
                 }
@@ -64,7 +62,7 @@ public class DriverHelper {
                 }
                 break;
             case "safari":
-                if(machine=="local") {
+                if(machine.equalsIgnoreCase("local")){
                     driver = new SafariDriver();
                 }
                 else
@@ -74,7 +72,7 @@ public class DriverHelper {
                 break;
 
             default:
-                if(machine=="local") {
+                if(machine.equalsIgnoreCase("local")) {
                     FirefoxDriverManager.getInstance().setup();
                     driver = new FirefoxDriver();
                 }
@@ -112,6 +110,8 @@ public class DriverHelper {
         }
     }
 
+     /*@FindBy(linkText = "GOT IT")
+   private WebElement cookieBtn;*/
     public void handleCookeis(){
         driver.findElement(By.linkText("GOT IT")).click();
     }
