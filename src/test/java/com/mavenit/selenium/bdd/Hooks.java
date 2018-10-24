@@ -1,6 +1,7 @@
 package com.mavenit.selenium.bdd;
 
 import com.mavenit.selenium.bdd.driver.DriverHelper;
+import cucumber.api.Scenario;
 import cucumber.api.java.After;
 import cucumber.api.java.Before;
 
@@ -21,7 +22,12 @@ public class Hooks {
     }
 
     @After
-    public void tearDown() {
+    public void tearDown(Scenario scenario)
+    {
+        if(scenario.isFailed())
+        {
+            driverHelper.embedScreenshot(scenario);
+        }
         driverHelper.closeBrowser();
     }
 }

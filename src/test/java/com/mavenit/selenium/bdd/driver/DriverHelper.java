@@ -1,11 +1,10 @@
 package com.mavenit.selenium.bdd.driver;
 
+import cucumber.api.Scenario;
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.ie.InternetExplorerDriver;
@@ -34,7 +33,7 @@ public class DriverHelper {
     private void remoteRun() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser);
-        driver = new RemoteWebDriver(new URL("http://192.168.0.3:4444/wd/hub"),capabilities);
+        driver = new RemoteWebDriver(new URL("http://162.49.176.49:4444/wd/hub"),capabilities);
     }
 
     public void openBrowser() throws MalformedURLException {
@@ -88,6 +87,17 @@ public class DriverHelper {
         driver.quit();
     }
 
+    public void embedScreenshot(Scenario scenario)
+    {
+        try{
+         byte[] screenshot = ((TakesScreenshot)driver).getScreenshotAs(OutputType.BYTES);
+         scenario.embed(screenshot,"image/png");
+        }
+        catch(WebDriverException e)
+        {
+            e.getMessage();
+        }
+    }
 
     public void navigateTo(String url){
         driver.get(url);

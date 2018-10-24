@@ -13,13 +13,18 @@ import java.util.List;
 
 public class TrolleyPage extends DriverHelper {
 
-    @FindBy(id = "quantity_0")
+    @FindBy(css = "select[id^='quantity']")
     private WebElement selectProdQuantity;
 
-    @FindBy(css = ".description>strong>a")
+    /*@FindBy(css = ".description>strong>a")
+    private WebElement prodNameInBasket;*///div[@class='ProductCard__content__jGRLE xsBlock lgHidden']/h2/a/span
+    @FindBy(xpath ="//div[contains(@class,'ProductCard__wrapper__')]//div[contains(@class,'ProductCard__details')]/div[contains(@class,'ProductCard__content__')]/h2/a")
     private WebElement prodNameInBasket;
 
-    @FindBy(xpath = ".//*[@id='trolleyForm']/table/tbody/tr/td[3]")
+    /*@FindBy(xpath = ".//*[@id='trolleyForm']/table/tbody/tr/td[3]")
+    private WebElement prodPriceInBasketMyTrolley;*/
+
+    @FindBy(xpath = "//div[contains(@class,'ProductCard__price__')]")
     private WebElement prodPriceInBasket;
 
     @FindBy(id = "qasSearchTerm")
@@ -37,6 +42,12 @@ public class TrolleyPage extends DriverHelper {
     @FindBy(id = "Collection_Checkout")
     private WebElement continueWithCollection;
 
+    @FindBy(css = ".colpaynow>h4")
+    private WebElement payNowBtn;
+
+    @FindBy(css = ".message")
+    private List<WebElement> messages;
+
     public void increaseItem(String no)
     {
         Select select = new Select(selectProdQuantity);
@@ -50,6 +61,8 @@ public class TrolleyPage extends DriverHelper {
     }*/
 
     public String getProdcutInBasket() {
+        sleep(2000);
+        System.out.println("actual product name is"+prodNameInBasket.getText());
         return prodNameInBasket.getText();
     }
 
@@ -87,7 +100,7 @@ public class TrolleyPage extends DriverHelper {
 
     public String continueWithCollection()
     {
-        List<WebElement> messageLists = driver.findElements(By.cssSelector(".message"));
+        List<WebElement> messageLists = messages;
         for(WebElement message:messageLists)
         {
             String msg = message.getText();
@@ -104,7 +117,7 @@ public class TrolleyPage extends DriverHelper {
         }
         WebDriverWait wait = new WebDriverWait(driver,10);
         wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector(".colpaynow>h4")));
-        String actual = driver.findElement(By.cssSelector(".colpaynow>h4")).getText();
+        String actual = payNowBtn.getText();
         return actual;
     }
 

@@ -10,7 +10,8 @@ import org.junit.runner.RunWith;
          strict=true,
          dryRun=false,
          plugin = {"json:target/cucumber.json","html:target/cucumber.html"},
-         tags = {"@search"})
+         tags = {"@searchtobasket"}
+         )
 public class RunCucumberTest {
 
 }

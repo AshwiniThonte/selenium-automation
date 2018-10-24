@@ -3,7 +3,7 @@ Feature: Search to basket test
   As a user
   I want to search for product and add to basket
   So that i can view added product in basket
-
+@searchtobasket
   Scenario: Add a product to Basket
     Given I am on the home page
     When I search for a product "nike"

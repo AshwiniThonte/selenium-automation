@@ -25,6 +25,21 @@ public class ResultsPage extends DriverHelper {
     @FindBy(css = ".ac-star-rating")
     private List<WebElement> reviewRatings;
 
+    /*@FindBy(css = "ac-product-card__rating")
+    private List<WebElement> reviewRatings;*/
+
+    @FindBy(css = ".icon--loading")
+    private WebElement iconLoading;
+
+    @FindBy(css = ".ac-product-price__amount")
+    private List<WebElement> productPrice;
+
+    @FindBy(css = ".font-standard.form-control.sort-select")
+    private WebElement selectSortOption;
+
+    @FindBy(css = ".ac-product-card__name")
+    private List<WebElement> productName;
+
     public String getProductTitle() {
         sleep(5000);
         return prodTitle.getText();
@@ -39,9 +54,9 @@ public class ResultsPage extends DriverHelper {
                 break;
             }
         }
-        new WebDriverWait(driver,30)
+        /*new WebDriverWait(driver,30)
                 .until(ExpectedConditions
-                        .invisibilityOf(driver.findElement(By.cssSelector(".icon--loading"))));
+                        .invisibilityOf(iconLoading));*/
         sleep(5000);
     }
 
@@ -60,7 +75,7 @@ public class ResultsPage extends DriverHelper {
     public List<Double> getAllProductsPrices()  {
         List<Double> collectedPriceList = new ArrayList<>();
 
-        List<WebElement> filterWebelements = driver.findElements(By.cssSelector(".ac-product-price__amount"));
+        List<WebElement> filterWebelements = productPrice;
         for (WebElement filterWebelement : filterWebelements) {
             double indiPrice = Double.parseDouble(filterWebelement.getText().replace("£", ""));
         }
@@ -69,20 +84,20 @@ public class ResultsPage extends DriverHelper {
     }
 
     public void selectSortingOptions(String choice) {
-        Select dropDownSelect = new Select(driver.findElement(By.cssSelector(".font-standard.form-control.sort-select")));
+        Select dropDownSelect = new Select(selectSortOption);
         dropDownSelect.selectByVisibleText(choice);
         driver.manage().timeouts().pageLoadTimeout(2,TimeUnit.SECONDS);
     }
 
     public String selectAnyProduct() {
-        List<WebElement> allProductsWebElement = driver.findElements(By.cssSelector(".ac-product-card__name"));
+        List<WebElement> allProductsWebElement = productName;
         int productCount = allProductsWebElement.size();
-        new WebDriverWait(driver,10)
+       /* new WebDriverWait(driver,10)
                 .until(ExpectedConditions.numberOfElementsToBe(By.cssSelector(".ac-product-card__name"),30));
-                       //.numberOfElementsToBeMoreThan(By.cssSelector(".ac-product-card__name"),30));
-        //sleep(3000);
+              */         //.numberOfElementsToBeMoreThan(By.cssSelector(".ac-product-card__name"),30));
+        sleep(3000);
         System.out.println("total number of products count : " + productCount);
-        int rdnNumber = new UtilsHelper().generateRandomNumber(productCount);
+        int rdnNumber = new UtilsHelper().generateRandomNumber(1);
 
         WebElement indProduct = allProductsWebElement.get(rdnNumber);
         String expectedProduct = indProduct.getText();
