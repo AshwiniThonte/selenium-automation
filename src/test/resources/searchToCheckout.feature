@@ -1,3 +1,4 @@
+@check
 Feature: Search to checkout
 
   As a user I want to search for a product
@@ -5,7 +6,7 @@ Feature: Search to checkout
   And Proceed for checkout
   Then I should see the product in checkout page
 
-  Scenario Outline:
+  //Scenario Outline:
     Given I am on the home page
     When I search for a product "<product>"
     And I select any product
@@ -16,7 +17,7 @@ Feature: Search to checkout
     And I select the option "<shopoption>"
     Then I should land on pay now page
 
-    Examples:
+    //Examples:
       |product|postcode|store|shopoption|
       |nike   |e6  |eastham|collection|
       |puma   |e6  |barking|delivery  |

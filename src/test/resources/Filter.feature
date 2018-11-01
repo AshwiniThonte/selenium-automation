@@ -1,4 +1,4 @@
-
+@filter
 Feature: filter by user preference
 
   As a user
