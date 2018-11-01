@@ -17,11 +17,11 @@ import static org.hamcrest.Matchers.is;
 public class SearchToBasketStepDef {
     public static  double ddddd;
 
-    ResultsPage resultsPage = new ResultsPage();
+   private ResultsPage resultsPage = new ResultsPage();
     private ProductDescriptionPage productDescriptionPage = new ProductDescriptionPage();
     private TrolleyPage trolleyPage = new TrolleyPage();
-    String prodName;
-   public static double priceOf1Prod;
+    private String prodName;
+    static double priceOf1Prod;
 
     @And("^I select any product$")
     public void iSelectAnyProduct(){
