@@ -1,6 +1,7 @@
 package com.mavenit.selenium.bdd.driver;
 
 import cucumber.api.Scenario;
+
 import io.github.bonigarcia.wdm.ChromeDriverManager;
 import io.github.bonigarcia.wdm.FirefoxDriverManager;
 import io.github.bonigarcia.wdm.InternetExplorerDriverManager;
@@ -18,6 +19,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.concurrent.TimeUnit;
 
+
 public class DriverHelper {
 
     protected static WebDriver driver;
@@ -33,7 +35,7 @@ public class DriverHelper {
     private void remoteRun() throws MalformedURLException {
         DesiredCapabilities capabilities = new DesiredCapabilities();
         capabilities.setBrowserName(browser);
-        driver = new RemoteWebDriver(new URL("http://162.49.176.49:4444/wd/hub"),capabilities);
+        driver = new RemoteWebDriver(new URL("http://192.168.170.1:4444/wd/hub"),capabilities);
     }
 
     public void openBrowser() throws MalformedURLException {

@@ -16,16 +16,16 @@ public class TrolleyPage extends DriverHelper {
     @FindBy(css = "select[id^='quantity']")
     private WebElement selectProdQuantity;
 
-    /*@FindBy(css = ".description>strong>a")
-    private WebElement prodNameInBasket;*///div[@class='ProductCard__content__jGRLE xsBlock lgHidden']/h2/a/span
-    @FindBy(xpath ="//div[contains(@class,'ProductCard__wrapper__')]//div[contains(@class,'ProductCard__details')]/div[contains(@class,'ProductCard__content__')]/h2/a")
-    private WebElement prodNameInBasket;
+    @FindBy(css = ".description>strong>a")
+    private WebElement prodNameInBasket;//div[@class='ProductCard__content__jGRLE xsBlock lgHidden']/h2/a/span
+    /*@FindBy(xpath ="//div[contains(@class,'ProductCard__wrapper__')]//div[contains(@class,'ProductCard__details')]/div[contains(@class,'ProductCard__content__')]/h2/a")
+    private WebElement prodNameInBasket;*/
 
-    /*@FindBy(xpath = ".//*[@id='trolleyForm']/table/tbody/tr/td[3]")
-    private WebElement prodPriceInBasketMyTrolley;*/
+    @FindBy(xpath = ".//*[@id='trolleyForm']/table/tbody/tr/td[3]")
+    private WebElement prodPriceInBasketMyTrolley;
 
-    @FindBy(xpath = "//div[contains(@class,'ProductCard__price__')]")
-    private WebElement prodPriceInBasket;
+    /*@FindBy(xpath = "//div[contains(@class,'ProductCard__price__')]")
+    private WebElement prodPriceInBasket;*/
 
     @FindBy(id = "qasSearchTerm")
     private WebElement postcodeTextbox;
@@ -68,7 +68,7 @@ public class TrolleyPage extends DriverHelper {
 
     public double getPriceOfProductInBasket()
     {
-            String price = prodPriceInBasket.getText().replace("£","").replace("*","");
+            String price = prodPriceInBasketMyTrolley.getText().replace("£","").replace("*","");
             double actualPriceOf1ProdInTrolley = Double.parseDouble(price);
             return actualPriceOf1ProdInTrolley;
 

@@ -19,7 +19,7 @@
                 </configuration>
             </plugin>
 
-            <plugin>
+            <!--<plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
                 <version>2.22.1</version>
@@ -33,7 +33,7 @@
                     </systemPropertyVariables>
                     <workingDirectory>FORK_DIRECTORY_${surefire.forkNumber}</workingDirectory>
                 </configuration>
-            </plugin>
+            </plugin>-->
         </plugins>
     </build>
 
